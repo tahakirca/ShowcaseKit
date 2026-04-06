@@ -5,12 +5,12 @@
 //  Created by Taha Kırca on 6.04.2026.
 //
 
-import SwiftUI
 
 import SwiftUI
 
 struct ShowcaseRowView: View {
     let row: ShowcaseRow
+    let config: ShowcaseConfig
     
     var body: some View {
         switch row.type {
@@ -28,7 +28,7 @@ struct ShowcaseRowView: View {
         HStack(alignment: .top, spacing: 16) {
             showImage(image)
                 .font(.system(size: 32))
-                .foregroundStyle(Color.accentColor)
+                .foregroundStyle(config.iconColor)
                 .frame(width: 44, height: 44)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -45,7 +45,7 @@ struct ShowcaseRowView: View {
     private func heroRow(image: ShowcaseImage) -> some View {
         showImage(image)
             .font(.system(size: 80))
-            .foregroundStyle(Color.accentColor)
+            .foregroundStyle(config.iconColor)
             .frame(maxWidth: .infinity)
             .frame(height: 200)
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShowcasePageView: View {
     let page: ShowcasePage
+    let config: ShowcaseConfig
     let showButton: Bool
     let onContinue: () -> Void
     
@@ -24,7 +25,7 @@ struct ShowcasePageView: View {
             
             VStack(alignment: .leading, spacing: 24) {
                 ForEach(page.rows) { row in
-                    ShowcaseRowView(row: row)
+                    ShowcaseRowView(row: row, config: config)
                 }
             }
             .padding(.horizontal, 32)
@@ -40,6 +41,7 @@ struct ShowcasePageView: View {
                         .padding(.vertical, 16)
                 }
                 .buttonStyle(.borderedProminent)
+                .tint(config.buttonColor)
                 .padding(.horizontal, 32)
                 .padding(.bottom, 32)
             }
