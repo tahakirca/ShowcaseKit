@@ -4,6 +4,26 @@ A lightweight, customizable onboarding and feature showcase library for SwiftUI.
 
 Built with modern Swift — no dependencies, no UIKit, just SwiftUI.
 
+## Screenshots
+
+### Feature Row
+<p>
+  <img src="Assets/feature-light.png" width="280" alt="Feature Light">
+  <img src="Assets/feature-dark.png" width="280" alt="Feature Dark">
+</p>
+
+### Hero + Text Row
+<p>
+  <img src="Assets/hero-light.png" width="280" alt="Hero Light">
+  <img src="Assets/hero-dark.png" width="280" alt="Hero Dark">
+</p>
+
+### Custom Row (Animated)
+<p>
+  <img src="Assets/custom-light.gif" width="280" alt="Custom Light">
+  <img src="Assets/custom-dark.gif" width="280" alt="Custom Dark">
+</p>
+
 ## Features
 
 - Swipe-based page navigation with dot indicator
