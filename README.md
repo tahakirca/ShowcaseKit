@@ -4,6 +4,10 @@ A lightweight, customizable onboarding and feature showcase library for SwiftUI.
 
 Built with modern Swift — no dependencies, no UIKit, just SwiftUI.
 
+| Light | Dark |
+|:---:|:---:|
+| &nbsp;&nbsp;<img src="Assets/demo-light.gif" width="260">&nbsp;&nbsp; | &nbsp;&nbsp;<img src="Assets/demo-dark.gif" width="260">&nbsp;&nbsp; |
+
 ## Screenshots
 
 ### `.feature` Row
