@@ -12,31 +12,27 @@ struct ShowcasePageView: View {
     let config: ShowcaseConfig
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 0) {
-                    Spacer(minLength: geometry.size.height * 0.08)
+        VStack(spacing: 0) {
+            Spacer()
 
-                    if let title = page.title {
-                        Text(title)
-                            .font(.largeTitle.bold())
-                            .foregroundStyle(config.titleColor)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 32)
-                            .padding(.bottom, 32)
-                    }
-
-                    VStack(alignment: .center, spacing: 28) {
-                        ForEach(page.rows) { row in
-                            ShowcaseRowView(row: row, config: config)
-                        }
-                    }
+            if let title = page.title {
+                Text(title)
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(config.titleColor)
+                    .minimumScaleFactor(0.7)
+                    .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
-
-                    Spacer(minLength: geometry.size.height * 0.08)
-                }
-                .frame(minHeight: geometry.size.height)
+                    .padding(.bottom, 56)
             }
+
+            VStack(alignment: .center, spacing: 28) {
+                ForEach(page.rows) { row in
+                    ShowcaseRowView(row: row, config: config)
+                }
+            }
+            .padding(.horizontal, 32)
+
+            Spacer()
         }
     }
 }
