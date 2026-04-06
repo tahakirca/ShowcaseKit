@@ -1,4 +1,4 @@
-# ShowcaseKit
+# iOS ShowcaseKit
 
 A lightweight, customizable onboarding and feature showcase library for SwiftUI.
 
@@ -8,21 +8,21 @@ Built with modern Swift — no dependencies, no UIKit, just SwiftUI.
 
 ### `.feature` Row
 
-| Light | Dark |
-|:---:|:---:|
-| <img src="Assets/feature-light.png" width="260"> | <img src="Assets/feature-dark.png" width="260"> |
+| Light | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Dark |
+|:---:|:---:|:---:|
+| <img src="Assets/feature-light.png" width="240"> | | <img src="Assets/feature-dark.png" width="240"> |
 
 ### `.hero` + `.text` Row
 
-| Light | Dark |
-|:---:|:---:|
-| <img src="Assets/hero-light.png" width="260"> | <img src="Assets/hero-dark.png" width="260"> |
+| Light | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Dark |
+|:---:|:---:|:---:|
+| <img src="Assets/hero-light.png" width="240"> | | <img src="Assets/hero-dark.png" width="240"> |
 
 ### `.custom` Row (Animated)
 
-| Light | Dark |
-|:---:|:---:|
-| <img src="Assets/custom-light.gif" width="260"> | <img src="Assets/custom-dark.gif" width="260"> |
+| Light | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Dark |
+|:---:|:---:|:---:|
+| <img src="Assets/custom-light.gif" width="240"> | | <img src="Assets/custom-dark.gif" width="240"> |
 
 ## Features
 
