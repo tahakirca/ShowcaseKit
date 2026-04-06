@@ -2,16 +2,15 @@
 //  ShowcaseRowView.swift
 //  ShowcaseKit
 //
-//  Created by Taha Kırca on 6.04.2026.
+//  Created by Taha Kirca on 6.04.2026.
 //
-
 
 import SwiftUI
 
 struct ShowcaseRowView: View {
     let row: ShowcaseRow
     let config: ShowcaseConfig
-    
+
     var body: some View {
         switch row.type {
         case .feature(let image, let title, let description):
@@ -20,17 +19,20 @@ struct ShowcaseRowView: View {
             heroRow(image: image)
         case .text(let text):
             textRow(text: text)
+        case .custom(let customView):
+            customView
+                .frame(maxWidth: .infinity)
         }
     }
-    
-    @ViewBuilder
+
     private func featureRow(image: ShowcaseImage, title: String, description: String) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            showImage(image)
+            imageView(image)
                 .font(.system(size: 32))
                 .foregroundStyle(config.iconColor)
                 .frame(width: 44, height: 44)
-            
+                .accessibilityHidden(true)
+
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.headline)
@@ -39,18 +41,19 @@ struct ShowcaseRowView: View {
                     .foregroundStyle(.secondary)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
-    
-    @ViewBuilder
+
     private func heroRow(image: ShowcaseImage) -> some View {
-        showImage(image)
+        imageView(image)
             .font(.system(size: 80))
             .foregroundStyle(config.iconColor)
             .frame(maxWidth: .infinity)
             .frame(height: 200)
+            .accessibilityHidden(true)
     }
-    
-    @ViewBuilder
+
     private func textRow(text: String) -> some View {
         Text(text)
             .font(.body)
@@ -58,13 +61,13 @@ struct ShowcaseRowView: View {
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
     }
-    
+
     @ViewBuilder
-    private func showImage(_ image: ShowcaseImage) -> some View {
+    private func imageView(_ image: ShowcaseImage) -> some View {
         switch image {
         case .system(let name):
             Image(systemName: name)
-        case .custom(let name):
+        case .asset(let name):
             Image(name)
                 .resizable()
                 .scaledToFit()

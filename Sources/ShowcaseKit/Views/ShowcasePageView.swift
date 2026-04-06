@@ -2,7 +2,7 @@
 //  ShowcasePageView.swift
 //  ShowcaseKit
 //
-//  Created by Taha Kırca on 6.04.2026.
+//  Created by Taha Kirca on 6.04.2026.
 //
 
 import SwiftUI
@@ -10,40 +10,32 @@ import SwiftUI
 struct ShowcasePageView: View {
     let page: ShowcasePage
     let config: ShowcaseConfig
-    let showButton: Bool
-    let onContinue: () -> Void
-    
+
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            
-            Text(page.title)
-                .font(.largeTitle.bold())
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
-                .padding(.bottom, 40)
-            
-            VStack(alignment: .leading, spacing: 24) {
-                ForEach(page.rows) { row in
-                    ShowcaseRowView(row: row, config: config)
+        GeometryReader { geometry in
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 0) {
+                    Spacer(minLength: geometry.size.height * 0.08)
+
+                    if let title = page.title {
+                        Text(title)
+                            .font(.largeTitle.bold())
+                            .foregroundStyle(config.titleColor)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                            .padding(.bottom, 32)
+                    }
+
+                    VStack(alignment: .center, spacing: 28) {
+                        ForEach(page.rows) { row in
+                            ShowcaseRowView(row: row, config: config)
+                        }
+                    }
+                    .padding(.horizontal, 32)
+
+                    Spacer(minLength: geometry.size.height * 0.08)
                 }
-            }
-            .padding(.horizontal, 32)
-            
-            Spacer()
-            Spacer()
-            
-            if showButton {
-                Button(action: onContinue) {
-                    Text(page.buttonTitle)
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(config.buttonColor)
-                .padding(.horizontal, 32)
-                .padding(.bottom, 32)
+                .frame(minHeight: geometry.size.height)
             }
         }
     }

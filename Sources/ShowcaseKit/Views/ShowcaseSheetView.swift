@@ -2,7 +2,8 @@
 //  ShowcaseSheetView.swift
 //  ShowcaseKit
 //
-//  Created by Taha Kırca on 6.04.2026.
+//  Created by Taha Kirca on 6.04.2026.
+//
 
 import SwiftUI
 
@@ -10,61 +11,93 @@ struct ShowcaseSheetView: View {
     let pages: [ShowcasePage]
     let config: ShowcaseConfig
     @Binding var isPresented: Bool
+    let onDismiss: ((ShowcaseDismissReason) -> Void)?
     @State private var currentPage = 0
-    
+
     private var isLastPage: Bool {
-        currentPage == pages.count - 1
+        currentPage >= pages.count - 1
     }
-    
+
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            VStack(spacing: 0) {
-                TabView(selection: $currentPage) {
-                    ForEach(Array(pages.enumerated()), id: \.offset) { index, page in
-                        ShowcasePageView(
-                            page: page,
-                            config: config,
-                            showButton: index == pages.count - 1
-                        ) {
-                            isPresented = false
-                        }
-                        .tag(index)
-                    }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                
-                if pages.count > 1 {
-                    DotIndicator(
-                        total: pages.count,
-                        current: currentPage,
-                        activeColor: config.dotActiveColor,
-                        inactiveColor: config.dotInactiveColor
+        VStack(spacing: 0) {
+            TabView(selection: $currentPage) {
+                ForEach(Array(pages.enumerated()), id: \.offset) { index, page in
+                    ShowcasePageView(
+                        page: page,
+                        config: config
                     )
-                    .padding(.bottom, 16)
+                    .tag(index)
                 }
             }
-            
-            if !isLastPage {
+            .tabViewStyle(.page(indexDisplayMode: .never))
+
+            if pages.count > 1 {
+                DotIndicator(
+                    total: pages.count,
+                    current: currentPage,
+                    activeColor: config.dotActiveColor,
+                    inactiveColor: config.dotInactiveColor
+                )
+                .accessibilityLabel("Page \(currentPage + 1) of \(pages.count)")
+                .padding(.bottom, 24)
+            }
+
+            if isLastPage {
                 Button {
+                    onDismiss?(.completed)
                     isPresented = false
                 } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(config.dismissButtonColor)
+                    Text(pages[currentPage].buttonTitle)
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(config.buttonColor)
                 }
-                .padding()
+                .accessibilityHint("Completes onboarding")
+                .padding(.bottom, 32)
+            } else {
+                HStack {
+                    Button {
+                        onDismiss?(.skipped)
+                        isPresented = false
+                    } label: {
+                        Text(config.skipText)
+                            .font(.subheadline)
+                            .foregroundStyle(config.skipColor)
+                    }
+                    .accessibilityHint("Skips onboarding")
+
+                    Spacer()
+
+                    Button {
+                        withAnimation {
+                            currentPage += 1
+                        }
+                    } label: {
+                        HStack(spacing: 6) {
+                            Text(config.nextText)
+                                .font(.subheadline.weight(.medium))
+                            Image(systemName: "arrow.right")
+                                .font(.caption.weight(.medium))
+                                .flipsForRightToLeftLayoutDirection(true)
+                        }
+                        .foregroundStyle(config.nextColor)
+                    }
+                    .accessibilityHint("Goes to next page")
+                }
+                .padding(.horizontal, 32)
+                .padding(.bottom, 32)
             }
         }
-        .interactiveDismissDisabled()
+        .background(config.backgroundColor)
+        .interactiveDismissDisabled(!config.isSwipeDismissEnabled)
     }
 }
 
-struct DotIndicator: View {
+private struct DotIndicator: View {
     let total: Int
     let current: Int
     let activeColor: Color
     let inactiveColor: Color
-    
+
     var body: some View {
         HStack(spacing: 8) {
             ForEach(0..<total, id: \.self) { index in
