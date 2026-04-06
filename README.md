@@ -8,21 +8,21 @@ Built with modern Swift — no dependencies, no UIKit, just SwiftUI.
 
 ### `.feature` Row
 
-| Light | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Dark |
-|:---:|:---:|:---:|
-| <img src="Assets/feature-light.png" width="240"> | | <img src="Assets/feature-dark.png" width="240"> |
+<p align="center">
+  <img src="Assets/feature-light.png" width="240">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="Assets/feature-dark.png" width="240">
+</p>
 
 ### `.hero` + `.text` Row
 
-| Light | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Dark |
-|:---:|:---:|:---:|
-| <img src="Assets/hero-light.png" width="240"> | | <img src="Assets/hero-dark.png" width="240"> |
+<p align="center">
+  <img src="Assets/hero-light.png" width="240">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="Assets/hero-dark.png" width="240">
+</p>
 
 ### `.custom` Row (Animated)
 
-| Light | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Dark |
-|:---:|:---:|:---:|
-| <img src="Assets/custom-light.gif" width="240"> | | <img src="Assets/custom-dark.gif" width="240"> |
+<p align="center">
+  <img src="Assets/custom-light.gif" width="240">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="Assets/custom-dark.gif" width="240">
+</p>
 
 ## Features
 
